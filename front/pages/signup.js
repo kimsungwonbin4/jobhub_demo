@@ -18,7 +18,7 @@ const Signup = () => {
   const [password, onChangePassword] = useInput('');
   const dispatch = useDispatch();
 
-  const onSubmit = useCallback((e) => {    
+  const onSubmit = useCallback((e) => {
     e.preventDefault();
     return dispatch({
       type: SIGN_UP_REQUEST,
