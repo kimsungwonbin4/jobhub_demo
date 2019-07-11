@@ -16,6 +16,7 @@ import AppLayout from '../Components/AppLayout';
 import GlobalStyles from "../Components/GlobalStyles";
 
 
+
 const Jobhub = ({ Component, store, pageProps }) => {
   return (
     <Container>
