@@ -1,4 +1,5 @@
 import react, { useCallback, useState, useEffect } from 'react';
+import Router from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SIGN_UP_REQUEST } from '../reducers/user';
@@ -20,6 +21,8 @@ const Signup = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
+    alert('会員加入完了!');
+    Router.push('/');
     return dispatch({
       type: SIGN_UP_REQUEST,
       data: {
@@ -32,17 +35,18 @@ const Signup = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div>가입</div>
+        <div>会員加入
+        </div>
         <div>
-          <label>아이디</label>
+          <label>メールアドレス</label>
           <input name="user-id" value={id} onChange={onChangeId} />
         </div>
         <div>
-          <label>패스워드</label>
+          <label>パスワード</label>
           <input name="user-password" type="password" value={password} onChange={onChangePassword} />
         </div>
         <div>
-          <button type="submit">가입하기</button>
+          <button type="submit">加入する</button>
         </div>
       </form>
     </>
