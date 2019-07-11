@@ -5,21 +5,27 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "next build",
-    "start": "next start"
+    "build": "cross-env ANALYZE=true next build",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 start server.js"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^8.1.0",
     "antd": "^3.17.0",
     "axios": "^0.18.0",
+    "compression-webpack-plugin": "^3.0.0",
     "cookie-parser": "^1.4.4",
+    "cross-env": "^5.2.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "immer": "^3.1.2",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "next": "^8.1.0",
     "next-redux-saga": "^4.0.2",
     "next-redux-wrapper": "^3.0.0-alpha.2",
+    "pm2": "^3.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -28,7 +34,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0",
-    "styled-reset": "^2.0.15"
+    "webpack-ant-icon-loader": "^1.0.8"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
