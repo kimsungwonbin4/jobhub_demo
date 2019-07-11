@@ -12,8 +12,8 @@ import App, { Container } from 'next/app';
 import reducer from '../reducers';
 import rootSaga from '../sagas';
 // import { LOAD_USER_REQUEST } from '../reducers/user';
-import AppLayout from '../Components/AppLayout';
-import GlobalStyles from "../Components/GlobalStyles";
+import AppLayout from '../components/AppLayout';
+import GlobalStyles from "../components/GlobalStyles";
 
 
 
