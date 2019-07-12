@@ -21,7 +21,6 @@ const Signup = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    alert('会員加入完了!');
     return dispatch({
       type: SIGN_UP_REQUEST,
       data: {
