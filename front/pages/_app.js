@@ -14,6 +14,7 @@ import GlobalStyles from '../components/GlobalStyles';
 
 import reducer from '../reducers';
 import rootSaga from '../sagas';
+import { LOAD_USER_REQUEST } from '../reducers/user';
 
 const Jobhub = ({ Component, store, pageProps }) => {
   return (
@@ -48,9 +49,9 @@ const Jobhub = ({ Component, store, pageProps }) => {
           ]}
         />
         <GlobalStyles />
-        
-          <Component {...pageProps} />
-        
+
+        <Component {...pageProps} />
+
       </Provider>
     </Container>
   );
@@ -60,10 +61,21 @@ Jobhub.getInitialProps = async (context) => {
   const { ctx, Component } = context;
   let pageProps = {};
 
+  const state = ctx.store.getState();
+  const cookie = ctx.isServer ? ctx.req.headers.cookie : '';
+  console.log(cookie);
+
+  if (ctx.isServer && cookie) {
+    axios.defaults.headers.Cookie = cookie;
+  }
+  if (!state.user.me) {
+    ctx.store.dispatch({
+      type: LOAD_USER_REQUEST,
+    });
+  }
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx) || {};
   }
-  
   return { pageProps };
 };
 
@@ -81,4 +93,4 @@ const configureStore = (initialState, options) => {
   return store;
 };
 
-export default withRedux(configureStore)(Jobhub);
+export default withRedux(configureStore)(withReduxSaga(Jobhub));

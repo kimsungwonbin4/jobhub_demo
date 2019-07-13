@@ -1,11 +1,12 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../../containers/Header';
 import BreadCrumbMenu from "../BreadCrumbMenu";
 import DashboardAside from "../DashboardAside";
+import { LOAD_USER_REQUEST } from '../../reducers/user';
 
 
 const MainWrapper = styled.div`
@@ -33,7 +34,16 @@ const Article = styled.div`
 `;
 
 const DashboardLayout = ({ children, path }) => {
+  // const { me } = useSelector(state => state.user);
+  // const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   if (!me) {
+  //     dispatch({
+  //       type: LOAD_USER_REQUEST,
+  //     })
+  //   }
+  // }, [])
   return (
     <>
       <Header />
@@ -41,7 +51,7 @@ const DashboardLayout = ({ children, path }) => {
       <MainWrapper>
         <Main>
           <Aside>
-            <DashboardAside path={path}/>
+            <DashboardAside path={path} />
           </Aside>
           <Article>
             {children}
@@ -51,5 +61,6 @@ const DashboardLayout = ({ children, path }) => {
     </>
   )
 }
+
 
 export default DashboardLayout;

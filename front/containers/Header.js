@@ -90,7 +90,8 @@ const PopupBtnsWrapper = styled.div`
 const Header = () => {
   // LOGIN STATE
   const { me } = useSelector(state => state.user);
-  
+  console.log(me);
+
 
   // MODAL
   const { modalIsOpen } = useSelector(state => state.modal);
@@ -128,34 +129,34 @@ const Header = () => {
           <HeaderSub>
             <HeaderSubMenu>
               <HeaderSearchMenu />
-                { 
-                  me ?
+              {
+                me ?
                   <HeaderAction>
-                    <HeaderProfile/>
+                    <HeaderProfile />
                     <PopupBtnsWrapper>
                       <PopupBtns />
                     </PopupBtnsWrapper>
                   </HeaderAction>
-                :
-                <HeaderAction>
-                  <LoginBtn>
-                    <ButtonLink type="login" size="inline" onClick={onLogin}>
-                      <IconLogin />ログイン
+                  :
+                  <HeaderAction>
+                    <LoginBtn>
+                      <ButtonLink type="login" size="inline" onClick={onLogin}>
+                        <IconLogin />ログイン
                     </ButtonLink>
-                  </LoginBtn>
-                  <SignUpBtnWrapper>
-                    <SignUpBtn>
-                      <ButtonLink type="action" size="w160_h38_f16" onClick={onSignUp}>新規登録（無料）</ButtonLink>
-                    </SignUpBtn>
-                  </SignUpBtnWrapper>
-                </HeaderAction>
-                }
+                    </LoginBtn>
+                    <SignUpBtnWrapper>
+                      <SignUpBtn>
+                        <ButtonLink type="action" size="w160_h38_f16" onClick={onSignUp}>新規登録（無料）</ButtonLink>
+                      </SignUpBtn>
+                    </SignUpBtnWrapper>
+                  </HeaderAction>
+              }
             </HeaderSubMenu>
           </HeaderSub>
         </HeaderWapper>
       </HeaderFix>
-      { modalIsOpen && <ModalLoginForm /> }
-      { modalSignUpIsOpen && <ModalSignUpForm /> }
+      {modalIsOpen && <ModalLoginForm />}
+      {modalSignUpIsOpen && <ModalSignUpForm />}
     </>
   );
 };

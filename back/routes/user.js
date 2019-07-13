@@ -2,17 +2,14 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const db = require('../models');
+const { isLoggedIn } = require('./middleware');
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const users = await db.Users.findOne({});
-    res.json(users);
-  } catch(e) {
-    console.log(e);
-    next(e);
-  }
+router.get('/', isLoggedIn, (req, res) => { // /api/user/
+  const user = Object.assign({}, req.user.toJSON());
+  delete user.password;
+  return res.json(user);
 });
 
 router.post('/', async (req, res, next) => {
@@ -47,7 +44,7 @@ router.post('/login', (req, res, next) => {
       console.log(err);
       return next(err);
     }
-    console.log('info==='+info);
+    console.log('info===' + info);
     if (info) {
       return res.status(401).send(info.reason);
     }
@@ -60,7 +57,7 @@ router.post('/login', (req, res, next) => {
           where: { id: user.id },
         });
         return res.json(fullUser);
-      } catch(e) {
+      } catch (e) {
         next(e);
       }
     });
