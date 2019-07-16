@@ -49,7 +49,7 @@ const dummy = [
   {
     id: 1,
     title: 'Facebook',
-    url: '',
+    url: 'http://api.jobhub.tokyo/api/auth/facebook',
   },
   {
     id: 2,

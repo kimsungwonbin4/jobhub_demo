@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from "styled-components";
 
 
-const SnsBtn = styled.button`
+const SnsBtn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,20 +41,20 @@ const SnsBtn = styled.button`
 `;
 
 // const SnsFacebook = styled(SnsBtn)`
-  
+
 // `;
 
 // const SnsGoogle = styled(SnsBtn)`
-  
+
 
 // `;
 
 // const SnsTwitter = styled(SnsBtn)`
-  
+
 // `;
 
 // const SnsYahoo = styled(SnsBtn)`
- 
+
 // `;
 
 // const SnsGitHub = styled(SnsBtn)`
@@ -63,12 +63,12 @@ const SnsBtn = styled.button`
 //   background-size: 27px, 21px;
 // `;
 
-const SnsBtnStyle = ({title, link}) => {
+const SnsBtnStyle = ({ title, link }) => {
   return (
     <>
-      <Link href={link}>
-        <SnsBtn className={title}>{title}</SnsBtn>
-      </Link>
+
+      <SnsBtn href={link} className={title}>{title}</SnsBtn>
+
     </>
   )
 }

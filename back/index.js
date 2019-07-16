@@ -11,6 +11,7 @@ const helmet = require('helmet');
 const passportConfig = require('./passport');
 const db = require('./models');
 const userAPIRouter = require('./routes/user');
+const authAPIRouter = require('./routes/auth');
 
 const prod = process.env.NODE_ENV === 'production'
 dotenv.config();
@@ -62,8 +63,16 @@ app.get('/', (req, res) => {
   res.send('react nodebird 백엔드 정상 동작');
 });
 
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: 'http://jobhub.tokyo/dashboard/top',
+  failureRedirect: 'login'
+}));
+
+
 // API는 다른 서비스가 내 서비스의 기능을 실행할 수 있게 열어둔 창구
 app.use('/api/user', userAPIRouter);
+app.use('/api/auth', authAPIRouter);
+
 
 app.listen(prod ? process.env.PORT : 3065, () => {
   console.log(`server is running on ${process.env.PORT}`);

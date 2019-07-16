@@ -1,6 +1,7 @@
 const passport = require('passport');
 const db = require('../models');
 const local = require('./local');
+const facebook = require('./facebookStrategy');
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -18,5 +19,7 @@ module.exports = () => {
     }
   });
 
-  local();
+  local(passport);
+
+  facebook(passport);
 }
