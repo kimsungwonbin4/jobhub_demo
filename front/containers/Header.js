@@ -12,6 +12,7 @@ import HeaderSearchMenu from '../components/HeaderSearchMenu';
 import HeaderProfile from '../components/HeaderProfile';
 import PopupBtns from '../components/PopupBtns';
 import SearchBar from '../components/SearchBar';
+import Loading from '../components/SearchBar';
 
 import ModalLoginForm from '../containers/ModalLoginForm';
 import ModalSignUpForm from './ModalSignUpForm';
@@ -96,6 +97,7 @@ const Header = () => {
   // MODAL
   const { modalIsOpen } = useSelector(state => state.modal);
   const { modalSignUpIsOpen } = useSelector(state => state.modal);
+  const { isLoggingIn } = useSelector(state => state.user);
 
   const dispatch = useDispatch();
   const onLogin = useCallback((e) => {
@@ -114,6 +116,7 @@ const Header = () => {
 
   return (
     <>
+      {isLoggingIn ? <Loading /> : ''}
       <HeaderFix>
         <HeaderWapper>
           <HeaderTop>

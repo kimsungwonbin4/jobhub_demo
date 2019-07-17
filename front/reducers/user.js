@@ -80,7 +80,6 @@ export default (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         me: action.data,
-        isLoading: false,
       };
     }
     case LOG_IN_FAILURE: {

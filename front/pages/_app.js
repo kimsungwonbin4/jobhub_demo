@@ -13,12 +13,10 @@ import GlobalStyles from '../components/GlobalStyles';
 import Header from '../containers/Header';
 
 import Loading from '../components/Loading';
-
 import reducer from '../reducers';
 import rootSaga from '../sagas';
 
 const Jobhub = ({ Component, store, pageProps }) => {
-
 
   return (
     <Container>
@@ -51,12 +49,8 @@ const Jobhub = ({ Component, store, pageProps }) => {
             },
           ]}
         />
-        <GlobalStyles />
-        
+        <GlobalStyles />        
           <Component {...pageProps} />
-          {
-            store.getState().user.isLoggingIn ? <Loading /> : ''
-          }
       </Provider>
     </Container>
   );
