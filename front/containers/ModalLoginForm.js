@@ -13,7 +13,6 @@ import ModalBg from '../components/modal/ModalBg';
 import SnsBtnList from './SnsBtnList';
 
 import { LOG_IN_REQUEST, REASON_RESET_REQUEST } from '../reducers/user';
-import { SHOW_LOADING, HIDDEN_LOADING } from '../reducers/loading';
 
 const ModalWrapper = styled.div`
   position: absolute;

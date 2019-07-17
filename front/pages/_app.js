@@ -55,7 +55,7 @@ const Jobhub = ({ Component, store, pageProps }) => {
         
           <Component {...pageProps} />
           {
-            store.getState().loading.isLoading ? <Loading /> : ''
+            store.getState().user.isLoggingIn ? <Loading /> : ''
           }
       </Provider>
     </Container>
