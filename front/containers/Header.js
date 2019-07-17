@@ -12,7 +12,7 @@ import HeaderSearchMenu from '../components/HeaderSearchMenu';
 import HeaderProfile from '../components/HeaderProfile';
 import PopupBtns from '../components/PopupBtns';
 import SearchBar from '../components/SearchBar';
-import Loading from '../components/SearchBar';
+import Loading from '../components/Loading';
 
 import ModalLoginForm from '../containers/ModalLoginForm';
 import ModalSignUpForm from './ModalSignUpForm';

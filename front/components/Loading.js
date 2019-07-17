@@ -7,7 +7,7 @@ const LoadingBg = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: 9999999;
   background: rgba(0, 0, 0, 0.8);
 `;
 
@@ -15,7 +15,7 @@ const LoadingWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 99999;
+  z-index: 99999999;
   margin-top: -21px;
   margin-left: -21px;
 `;
