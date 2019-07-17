@@ -7,16 +7,19 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import axios from 'axios';
 import App, { Container } from 'next/app';
+import { useSelector } from 'react-redux';
 
 import GlobalStyles from '../components/GlobalStyles';
+import Header from '../containers/Header';
 
-
+import Loading from '../components/Loading';
 
 import reducer from '../reducers';
 import rootSaga from '../sagas';
-import { LOAD_USER_REQUEST } from '../reducers/user';
 
 const Jobhub = ({ Component, store, pageProps }) => {
+
+
   return (
     <Container>
       <Provider store={store}>
@@ -49,9 +52,11 @@ const Jobhub = ({ Component, store, pageProps }) => {
           ]}
         />
         <GlobalStyles />
-
-        <Component {...pageProps} />
-
+        
+          <Component {...pageProps} />
+          {
+            store.getState().loading.isLoading ? <Loading /> : ''
+          }
       </Provider>
     </Container>
   );
@@ -60,22 +65,12 @@ const Jobhub = ({ Component, store, pageProps }) => {
 Jobhub.getInitialProps = async (context) => {
   const { ctx, Component } = context;
   let pageProps = {};
-
   const state = ctx.store.getState();
-  const cookie = ctx.isServer ? ctx.req.headers.cookie : '';
-  console.log(cookie);
 
-  if (ctx.isServer && cookie) {
-    axios.defaults.headers.Cookie = cookie;
-  }
-  if (!state.user.me) {
-    ctx.store.dispatch({
-      type: LOAD_USER_REQUEST,
-    });
-  }
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx) || {};
   }
+  
   return { pageProps };
 };
 
@@ -93,4 +88,4 @@ const configureStore = (initialState, options) => {
   return store;
 };
 
-export default withRedux(configureStore)(withReduxSaga(Jobhub));
+export default withRedux(configureStore)(Jobhub);

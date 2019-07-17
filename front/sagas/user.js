@@ -28,6 +28,8 @@ import {
   UNFOLLOW_USER_SUCCESS,
 } from '../reducers/user';
 
+import { SHOW_LOADING, HIDDEN_LOADING } from '../reducers/loading';
+
 
 import { HIDDEN_MODAL } from '../reducers/modal';
 
@@ -41,6 +43,12 @@ function logInAPI(loginData) {
 
 function* logIn(action) {
   try {
+
+    // Login modal close
+    yield put({ 
+      type: SHOW_LOADING 
+    });
+
     const result = yield call(logInAPI, action.data);
     yield put({ // put은 dispatch 동일
       type: LOG_IN_SUCCESS,
@@ -48,11 +56,20 @@ function* logIn(action) {
     });
 
     // Login modal close
+
+    yield put({ // put은 dispatch 동일
+      type: HIDDEN_LOADING
+    });
+
     yield put({ // put은 dispatch 동일
       type: HIDDEN_MODAL 
     });
     
   } catch (e) { // loginAPI 실패
+
+    yield put({ 
+      type: HIDDEN_LOADING 
+    });
     console.error(e);
     yield put({
       type: LOG_IN_FAILURE,
@@ -77,7 +94,13 @@ function* signUp(action) {
     yield put({ // put은 dispatch 동일
       type: SIGN_UP_SUCCESS,
     });
+    yield put({ 
+      type: HIDDEN_LOADING,
+    });
   } catch (e) { // loginAPI 실패
+    yield put({ 
+      type: HIDDEN_LOADING,
+    });
     console.error(e);
     yield put({
       type: SIGN_UP_FAILURE,
